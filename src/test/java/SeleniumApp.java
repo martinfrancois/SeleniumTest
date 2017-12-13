@@ -1,4 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -7,7 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class SeleniumApp {
 
-  public static void main(String[] args) {
+  @Test
+  public void testSelenium() {
     // declaration and instantiation of objects/variables
     String geckoDriverPath = new File("").getAbsolutePath() + "/geckodriver";
     System.out.println(geckoDriverPath);
@@ -27,20 +31,13 @@ public class SeleniumApp {
     // get the actual value of the title
     actualTitle = driver.getTitle();
 
+    //close Fire fox
+    driver.close();
+
     /*
      * compare the actual title of the page with the expected one and print
      * the result as "Passed" or "Failed"
      */
-    if (actualTitle.contentEquals(expectedTitle)){
-      System.out.println("Test Passed!");
-    } else {
-      System.out.println("Test Failed");
-    }
-
-    //close Fire fox
-    driver.close();
-
+    assertEquals(expectedTitle, actualTitle);
   }
-
-
 }
